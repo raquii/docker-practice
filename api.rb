@@ -16,10 +16,3 @@ module API
     end
   end
 end
-
-# mount api on rack
-Application = Rack::Builder.new do
-  map "/" do
-    run API::Root
-  end
-end

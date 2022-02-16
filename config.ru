@@ -1,3 +1,3 @@
-require_relative './api.rb'
+require './api'
 
-run Application
+run API::Root
