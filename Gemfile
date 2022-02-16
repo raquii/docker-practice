@@ -3,3 +3,4 @@
 source "https://rubygems.org"
 
 gem "grape", "~> 1.6"
+gem "require_all", "~> 3.0"
