@@ -1,0 +1,13 @@
+default: &default
+  adapter: postgresql
+  encoding: utf-8
+  database: docker_practice
+  pool: 5
+
+development:
+  <<: *default
+  database: docker_practice_development
+
+test:
+  <<: *default
+  database: docker_practice_test
