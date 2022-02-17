@@ -17,5 +17,6 @@ module API
     end
 
     mount ::API::Greetings
+    mount ::API::Mirror
   end
 end
