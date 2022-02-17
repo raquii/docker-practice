@@ -1,6 +1,11 @@
 require 'bundler/setup'
+load "tasks/otr-activerecord.rake"
 
-require 'active_record_migrations'
+namespace :db do
+  task :environment do
+    require_relative "api"
+  end
+end
 
 desc 'start console'
 task :console do 
@@ -16,12 +21,3 @@ task :routes do
         puts "#{method} #{path}"
     end
 end
-
-ActiveRecordMigrations.configure do |c|
-    c.yaml_config = 'config/database.yml'
-end
-
-ActiveRecordMigrations.load_tasks
-  
-  
-
