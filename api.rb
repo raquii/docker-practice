@@ -15,5 +15,6 @@ module API
 
     mount ::API::Greetings
     mount ::API::Mirror
+    mount ::API::Humans
   end
 end
