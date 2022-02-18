@@ -4,6 +4,8 @@ services:
     image: postgres
     volumes: 
       - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
   api:
     build: .
     command: bundle exec rackup -p 9292 --host 0.0.0.0
@@ -11,4 +13,4 @@ services:
       - "9292:9292"
     depends_on:
       - db
-  
+   

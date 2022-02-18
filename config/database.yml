@@ -3,6 +3,9 @@ default: &default
   encoding: utf-8
   database: docker_practice
   host: db
+  port: 5432
+  username: postgres
+  password: password
   pool: 5
 
 development:
