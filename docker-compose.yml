@@ -1,0 +1,14 @@
+version: '2'
+services:
+  db: 
+    image: postgres
+    volumes: 
+      - ./tmp/db:/var/lib/postgresql/data
+  api:
+    build: .
+    command: bundle exec rackup -p 9292 --host 0.0.0.0
+    ports:
+      - "9292:9292"
+    depends_on:
+      - db
+  

@@ -2,6 +2,7 @@ default: &default
   adapter: postgresql
   encoding: utf-8
   database: docker_practice
+  host: db
   pool: 5
 
 development:

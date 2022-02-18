@@ -1,6 +1,6 @@
 FROM ruby:2.6.9 AS base
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y postgresql-client
 
 # dependencies
 COPY Gemfile Gemfile.lock ./
