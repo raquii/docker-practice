@@ -1,5 +1,3 @@
-require_rel '../app/models'
-
 module API
     class Greetings < Grape::API
         format :json
