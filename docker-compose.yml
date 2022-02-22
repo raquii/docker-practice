@@ -3,14 +3,19 @@ services:
   db: 
     image: postgres
     volumes: 
-      - ./tmp/db:/var/lib/postgresql/data
+      - ./tmp/postgresql:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
   api:
     build: .
-    command: bundle exec rackup -p 9292 --host 0.0.0.0
+    command: bash -c "rm -f tmp/pids/server.pid && rackup --host 0.0.0.0 -p 9292"
     ports:
       - "9292:9292"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/docker_practice_development
+      - RACK_ENV=development
     depends_on:
       - db
    
