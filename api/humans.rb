@@ -1,7 +1,12 @@
 module API
     class Humans < Grape::API
         format :json
-
+        rescue_from NotFoundError, ActiveRecord::RecordNotFound do |e|
+            error!('Record not found', 404)
+        end
+        rescue_from ActiveRecord::RecordInvalid do |e|
+            error!(e.message, 409)
+        end
 
         helpers do
             def human_params(params)
