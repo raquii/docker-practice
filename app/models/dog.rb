@@ -3,4 +3,5 @@ class Dog < ActiveRecord::Base
     include FavoriteFood
     
     belongs_to :human
+    validates :name, presence: true
 end
