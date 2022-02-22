@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require_relative 'config/environment'
+require_relative 'api'
 load "tasks/otr-activerecord.rake"
 
 namespace :db do
