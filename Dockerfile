@@ -9,6 +9,10 @@ RUN bundle install
 # copy app files over
 COPY . ./
 
+COPY bin/entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
 EXPOSE 9292
 
 CMD ["bundle", "exec", "rackup", "--host", "0.0.0.0", "-p", "9292"]
