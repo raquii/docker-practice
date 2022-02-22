@@ -71,6 +71,14 @@ module API
                 human
             end
 
+            desc 'Delete a human'
+            params do
+                requires :id, type: Integer
+            end
+            delete ':id' do
+                find_human(params[:id]).destroy
+            end
+
         end
     end
     
