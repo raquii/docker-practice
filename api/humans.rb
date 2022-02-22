@@ -1,7 +1,7 @@
 module API
     class Humans < Grape::API
         format :json
-        rescue_from NotFoundError, ActiveRecord::RecordNotFound do |e|
+        rescue_from ActiveRecord::RecordNotFound do |e|
             error!('Record not found', 404)
         end
         rescue_from ActiveRecord::RecordInvalid do |e|
@@ -18,6 +18,10 @@ module API
                 date_of_birth: params[:date_of_birth]
               }
             end
+
+            def find_human(id)
+                Human.find(id)
+            end
         end
 
         resource :human do
@@ -32,7 +36,7 @@ module API
             end
             route_param :id do
                 get do
-                  Human.find(params[:id])
+                  find_human(params[:id])
                 end
             end
 
@@ -47,6 +51,22 @@ module API
             post do
                 human = Human.new(human_params(params))
                 human.save!
+
+                human
+            end
+
+            desc 'Edit a human'
+            params do
+                requires :id, type: Integer
+                requires :name, type: String
+                optional :favorite_food, type: String
+                optional :favorite_color, type: String
+                optional :date_of_birth, type: Date
+                optional :city, type: String
+            end
+            put ':id' do
+                human = find_human(params[:id])
+                human.update!(human_params(params))
 
                 human
             end
