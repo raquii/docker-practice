@@ -4,6 +4,7 @@ require 'bundler/setup'
 env = ENV['RACK_ENV'].to_sym || :development
 
 Bundler.require(:default, env)
+require_all 'app'
 
 OTR::ActiveRecord.configure_from_url! ENV['DATABASE_URL']
 OTR::ActiveRecord.establish_connection!
